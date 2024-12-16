@@ -18,5 +18,5 @@ $result = $conn->query($sql);
 
 if ($result) {
 
-    echo alert('Register Success');
+    echo alert('Register Success', '/login');
 }

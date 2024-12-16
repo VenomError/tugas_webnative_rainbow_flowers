@@ -1,36 +1,72 @@
-<div class="ltn__login-area pb-90 pt-90">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title-area text-center">
-                    <h1>CREATE NEW PRODUCT</h1>
+<?php
+// init nilai untuk pengeditan nnti
 
-                </div>
-            </div>
+$id = '';
+$nama_bunga = '';
+$harga = '';
+$diskon = '';
+$rating = '';
+$deskripsi = '';
+
+$mode = 'create';
+
+if (isset($_GET['mode']) && isset($_GET['id'])) {
+    $mode = $_GET['mode'];
+    $id = $_GET['id'];
+    $bunga = $conn->query("SELECT * FROM bunga WHERE id='$id'");
+
+    $mode = 'edit';
+
+    if ($bunga) {
+        $bunga = $bunga->fetch_object();
+
+        $id = $bunga->id;
+        $nama_bunga = $bunga->nama_bunga;
+        $harga = $bunga->harga;
+        $diskon = $bunga->diskon;
+        $rating = $bunga->rating;
+        $deskripsi = $bunga->deskripsi;
+    }
+}
+?>
+
+<form action="<?= $mode == 'create' ? '/actions/createProduct.php' : '/actions/updateProduct.php' ?>" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow-md mb-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="hidden" name="id" value="<?= $id ?>">
+        <div>
+            <label for="nama_bunga" class="block font-medium mb-1">Nama Bunga</label>
+            <input required type="text" name="nama_bunga" id="nama_bunga" class="w-full border rounded p-2" value="<?= $nama_bunga ?>">
         </div>
-        <div class="row">
-            <div class="col-lg-6 offset-lg-3">
-                <div class="account-login-inner">
-                    <form action="/actions/createProduct.php" method="POST" class="ltn__form-box contact-form-box" enctype="multipart/form-data">
-                        <label>Nama Bunga</label>
-                        <input type="text" name="nama_bunga" placeholder="Nama Bunga*" class="form-control mb-3" required>
-                        <label>Harga</label>
-                        <input type="number" name="harga" placeholder="Harga*" class="form-control mb-3" required>
-                        <label>Diskon</label>
-                        <input type="number" name="diskon" placeholder="Diskon*" class="form-control mb-3" required>
-                        <label>Rating</label>
-                        <input type="number" inputmode="numeric" max="5" min="1" name="rating" placeholder="Rating*" class="form-control mb-3" required>
-                        <label>Gambar</label>
-                        <input type="file" name="gambar" class="form-control mb-3" required>
-                        <textarea name="deskripsi" placeholder="Description" cols="30" rows="10" required></textarea>
-                        <div class="btn-wrapper">
-                            <button class="theme-btn-1 btn reverse-color btn-block" type="submit">LOGIN</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
+        <div>
+            <label for="harga" class="block font-medium mb-1">Harga </label>
+            <input required type="number" name="harga" id="harga" class="w-full border rounded p-2" value="<?= $harga ?>">
+        </div>
+
+        <div>
+            <label for="diskon" class="block font-medium mb-1">Diskon </label>
+            <input required type="number" name="diskon" id="diskon" class="w-full border rounded p-2" value="<?= $diskon ?>">
+        </div>
+
+        <div>
+            <label for="rating" class="block font-medium mb-1">Rating</label>
+            <input required type="number" name="rating" id="rating" step="0.1" max="5" min="0" class="w-full border rounded p-2" value="<?= $rating ?>">
+        </div>
+
+        <div>
+            <label for="gambar" class="block font-medium mb-1">Gambar</label>
+            <input <?= $mode == 'create' ? 'required' : '' ?> type="file" name="gambar" id="gambar" class="w-full border rounded p-2">
+        </div>
+
+        <div class="md:col-span-2">
+            <label for="deskripsi" class="block font-medium mb-1">Deskripsi</label>
+            <textarea name="deskripsi" id="deskripsi" rows="4" class="w-full border rounded p-2"><?= $deskripsi ?></textarea>
         </div>
     </div>
-</div>
 
-<?php include 'components/produk_list.php' ?>
+
+    <button type="submit" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <?= $mode == 'create' ? 'Create' : 'Edit' ?>
+    </button>
+    <a href="/dashboard" class="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Cancel</a>
+</form>

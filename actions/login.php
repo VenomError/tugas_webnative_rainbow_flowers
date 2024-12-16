@@ -11,7 +11,7 @@ if ($user->num_rows > 0) {
 
     $user = $user->fetch_object();
     $_SESSION['auth'] = $user;
-    echo alert('Login Success');
+    echo alert('Login Success', '/dashboard');
 } else {
     echo alert('Login Failed', '/login');
 }

@@ -18,7 +18,7 @@ VALUES
 ";
 
 if ($conn->query($sql)) {
-    echo alert('Create Product Success');
+    echo alert('Create Product Success', '/dashboard');
 } else {
     echo alert('Create Product Failed');
 }

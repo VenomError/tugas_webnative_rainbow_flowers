@@ -20,11 +20,6 @@
                                     <li class="menu-icon"><a href="/product">Product</a>
 
                                     </li>
-                                    <?php if (isLogin()): ?>
-                                        <li class="menu-icon"><a href="/create_product">Add Product</a>
-
-                                        </li>
-                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </nav>
