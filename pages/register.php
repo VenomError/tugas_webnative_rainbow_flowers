@@ -16,7 +16,7 @@
                         <input type="email" name="email" placeholder="Email*">
                         <input type="password" name="password" placeholder="Password*">
                         <div class="btn-wrapper">
-                            <button class="theme-btn-1 btn reverse-color btn-block" type="submit">LOGIN</button>
+                            <button class="theme-btn-1 btn reverse-color btn-block" type="submit">REGISTER</button>
                         </div>
                     </form>
                     <div class="by-agree text-center">
