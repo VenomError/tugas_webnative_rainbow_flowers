@@ -9,14 +9,22 @@
                         <a href="/" style="color: #E55472;">Rainbow <b style="margin-left: 5px;"> Flowers</b></a>
                     </div>
                 </div>
-                <div class="col header-menu-column">
+                <div class="col header-menu-column " style="margin-left: 30px;">
                     <div class="header-menu d-none d-xl-block">
                         <nav>
                             <div class="ltn__main-menu">
                                 <ul>
-                                    <li class="menu-icon"><a href="/">List Bunga</a>
+                                    <li class="menu-icon"><a href="/">Home</a>
 
                                     </li>
+                                    <li class="menu-icon"><a href="/product">Product</a>
+
+                                    </li>
+                                    <?php if (isLogin()): ?>
+                                        <li class="menu-icon"><a href="/create_product">Add Product</a>
+
+                                        </li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </nav>
@@ -25,19 +33,26 @@
                 <div class="col">
                     <div class="ltn__header-options">
                         <ul>
-                            <!-- 
+
                             <li>
                                 <div class="ltn__drop-menu user-menu">
                                     <ul>
                                         <li>
                                             <a href="#"><i class="icon-user"></i></a>
                                             <ul>
-                                                <li><a href="login.html">Sign in</a></li>
+                                                <?php if (!isLogin()): ?>
+                                                    <li><a href="/login">Login</a></li>
+                                                    <li><a href="/register">Register</a></li>
+                                                <?php else: ?>
+                                                    <li><a href="/logout">Logout</a></li>
+
+                                                <?php endif; ?>
                                             </ul>
+
                                         </li>
                                     </ul>
                                 </div>
-                            </li> -->
+                            </li>
                         </ul>
                     </div>
                 </div>

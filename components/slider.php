@@ -25,10 +25,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="slide-item-img">
-                                                <img src="img/slider/41-1.png" alt="#">
-                                                <span class="call-to-circle-1"></span>
-                                            </div> -->
+                                        <div class="slide-item-img">
+                                            <span class="call-to-circle-1"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -56,10 +55,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="slide-item-img">
-                                                <img src="img/slider/41-1.png" alt="#">
-                                                <span class="call-to-circle-1"></span>
-                                            </div> -->
+                                        <div class="slide-item-img">
+                                            <span class="call-to-circle-1"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

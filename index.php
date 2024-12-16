@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once __DIR__ . "/db.php";
+require_once __DIR__ . "/function.php";
+$url = 'index';
+if (isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] != '/') {
+    $url = $_SERVER['PATH_INFO'];
+}
+
+$page = __DIR__ . "/pages/$url.php";
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -10,15 +21,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Place favicon.png in the root directory -->
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />
     <!-- Font Icons css -->
-    <link rel="stylesheet" href="css/font-icons.css">
+    <link rel="stylesheet" href="assets/css/font-icons.css">
     <!-- plugins css -->
-    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="assets/css/plugins.css">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 
 <body>
@@ -27,18 +38,20 @@
     <div class="body-wrapper">
 
         <!-- HEADER AREA START (header-4) -->
-        <?php include('header.php') ?>
+        <?php include('components/header.php') ?>
         <!-- HEADER AREA END -->
 
         <div class="ltn__utilize-overlay"></div>
 
-        <!-- SLIDER AREA START (slider-6) -->
-        <?php include 'slider.php' ?>
-        <!-- SLIDER AREA END -->
+        <?php
+        if (file_exists($page)) {
+            include $page;
+        } else {
+            echo "File Tidak Ditemukan $page";
+        }
 
-        <!-- PRODUCT TAB AREA START (product-item-3) -->
-        <?php include 'produk_list.php' ?>
-        <!-- PRODUCT TAB AREA END -->
+        ?>
+
     </div>
     <!-- Body main wrapper end -->
 
@@ -54,9 +67,9 @@
     <!-- preloader area end -->
 
     <!-- All JS Plugins -->
-    <script src="js/plugins.js"></script>
+    <script src="assets/js/plugins.js"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 
